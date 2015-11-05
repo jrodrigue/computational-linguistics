@@ -78,6 +78,7 @@ for clave in dicConteo:
 print("###################### PROBABILIDADES LÉXICAS #############")
 
 def calProb(palabra):
+	listaDicc = sorted(list(diccionarioR.items()))
 	repeticiones=0
 	for i in range(0,len(arrayPalabras)):
 		if arrayPalabras[i]==palabra:
@@ -85,15 +86,26 @@ def calProb(palabra):
 			posiciones.append(i)
 	if repeticiones>0:
 		li=d[palabra][1].items()
+	
 	print("############# Resultados de la Busqueda para la Palabra (",palabra,") #####################")
 	print(" ")
 	print("La palabra ",palabra," Se consiguio ", repeticiones, " Veces")
 	print(" ")
 	for b,n in li:
 		r = n/d[palabra][0]
-		print("P(",b.upper(),"|",palabra,") = ",format(r, '.6f'))
+		r=format(r, '.6f')
+		print("P(",b.upper(),"|",palabra,") = ",r)
+	categoryK = d[palabra][1].keys()
+	category = d[palabra][1]
+	# for p,k in listaDicc:
+	# 	print (p, k)
+	for g in categoryK:
+		r = category[g]/n
+		r=format(r, '.6f')
+		print("P(",palabra,"|",g.upper(),") = ",r)
 
-	# print(d[palabra][0])
+	# print(listaDicc('dt'))
+	
 	
 palabra = input("Ingrese una palabra : ")
 if palabra!="":
