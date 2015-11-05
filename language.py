@@ -1,8 +1,8 @@
 import collections
 import operator
 import os
-
 #declaraciones
+os.system('clear')
 cadena="EL/DT perro/N come/V carne/N de/P la/DT carniceria/N y/C de/P la/DT nevera/N y/C canta/V el/DT la/N la/N la/N ./Fp";
 cadena = cadena.lower()
 cadena_separada = cadena.split() #separo la cadena por los espacios
@@ -22,14 +22,11 @@ conCate={}
 lcad=[x.split('/') for x in cadena.split()]
 diccionario = (dict(lcad))
 lista_diccionario = diccionario.items()
-# print("##################")
 arrayPalabras=[]
 arrayClasePalabras=[]
 for v,c in lcad: #vector de clases de las palabras
-	# tuplaPalabras[v]=c
 	arrayPalabras.append(v)
 	arrayClasePalabras.append(c)
-# print("##################")
 nobj=len(lcad)
 for i, c in lcad:
 	datos.append(c)
@@ -39,10 +36,8 @@ print("################# DICCIONARIO DE CATEGORIA ################")
 for p,k in listaDicc:
 	print (p, k)
 print("################# DICCIONARIO CON FRECUENCIA ##############")
-
 d={}
 dic2={}
-
 for c,v in lcad:
 	dic2[c]=1+dic2.get(c,0)
 	dc={}
@@ -53,7 +48,6 @@ for c,v in lcad:
 	del dc
 for p in d:
 	print (p, ": ", d[p])	
-
 print("################# FRECUENCIA DE BIGRAMAS ##################")
 # v -> valor - c -> clave
 for v,c in lcad: #vector de clases de las palabras
@@ -71,12 +65,9 @@ for i in range(tam):
 dicConteo={}
 for k in range(len(tuplaClaves)):
 	dicConteo[tuplaClaves[k]]=1+dicConteo.get(tuplaClaves[k],0)
-
 for clave in dicConteo:
 	print (clave, ": ", dicConteo[clave])
-
 print("###################### PROBABILIDADES LÉXICAS #############")
-
 def calProb(palabra):
 	listaDicc = sorted(list(diccionarioR.items()))
 	repeticiones=0
@@ -86,7 +77,6 @@ def calProb(palabra):
 			posiciones.append(i)
 	if repeticiones>0:
 		li=d[palabra][1].items()
-	
 	print("############# Resultados de la Busqueda para la Palabra (",palabra,") #####################")
 	print(" ")
 	print("La palabra ",palabra," Se consiguio ", repeticiones, " Veces")
@@ -97,16 +87,14 @@ def calProb(palabra):
 		print("P(",b.upper(),"|",palabra,") = ",r)
 	categoryK = d[palabra][1].keys()
 	category = d[palabra][1]
-	# for p,k in listaDicc:
-	# 	print (p, k)
-	for g in categoryK:
-		r = category[g]/n
-		r=format(r, '.6f')
-		print("P(",palabra,"|",g.upper(),") = ",r)
-
-	# print(listaDicc('dt'))
-	
-	
+	lcategoy = sorted(list(category.items()))
+	for g,pl in lcategoy:
+		for pp,po in listaDicc:
+			if g==pp:
+				r=0
+				r = pl/po
+				r=format(r, '.6f')
+				print("P(",palabra,"|",pp.upper(),") = ",r)
 palabra = input("Ingrese una palabra : ")
 if palabra!="":
 	calProb(palabra)
