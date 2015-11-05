@@ -39,9 +39,7 @@ print("################# DICCIONARIO DE CATEGORIA ################")
 for p,k in listaDicc:
 	print (p, k)
 print("################# DICCIONARIO CON FRECUENCIA ##############")
-# dicP={}
-# for v,c in lcad: #vector de clases de las palabras
-# 	dicP[v]=1+dicP.get(v,0)
+
 d={}
 dic2={}
 
@@ -76,7 +74,7 @@ for k in range(len(tuplaClaves)):
 
 for clave in dicConteo:
 	print (clave, ": ", dicConteo[clave])
-# print("###########################################################")# print(lcad)
+
 print("###################### PROBABILIDADES LÉXICAS #############")
 
 def calProb(palabra):
@@ -92,12 +90,11 @@ def calProb(palabra):
 	print("La palabra ",palabra," Se consiguio ", repeticiones, " Veces")
 	print(" ")
 	for b,n in li:
-		print("P(",b.upper(),"|",palabra,") = ",n/d[palabra][0])
-	for b,n in li:
-		print(n/repeticiones)
+		r = n/d[palabra][0]
+		print("P(",b.upper(),"|",palabra,") = ",format(r, '.6f'))
+
+	# print(d[palabra][0])
 	
-	print(d[palabra][0]/n)
-		#print("P(",palabra,"|",b.upper(),") = ",n/repeticiones)
 palabra = input("Ingrese una palabra : ")
 if palabra!="":
 	calProb(palabra)
