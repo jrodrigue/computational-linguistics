@@ -24,6 +24,9 @@ diccionario = (dict(lcad))
 lista_diccionario = diccionario.items()
 arrayPalabras=[]
 arrayClasePalabras=[]
+d={}
+dic2={}
+
 for v,c in lcad: #vector de clases de las palabras
 	arrayPalabras.append(v)
 	arrayClasePalabras.append(c)
@@ -36,8 +39,6 @@ print("################# DICCIONARIO DE CATEGORIA ################")
 for p,k in listaDicc:
 	print (p, k)
 print("################# DICCIONARIO CON FRECUENCIA ##############")
-d={}
-dic2={}
 for c,v in lcad:
 	dic2[c]=1+dic2.get(c,0)
 	dc={}
@@ -46,8 +47,12 @@ for c,v in lcad:
 			dc[valor]=1+dc.get(valor,0)
 		d[c]=dic2[c],dc
 	del dc
-for p in d:
-	print (p, ": ", d[p])	
+dp2={}
+for x in d:
+	lpd = d[x][1]
+	lp = sorted(list(lpd.items()))
+	if len(d[x][1])==1:
+		print(x,d[x][0],d[x][1])
 print("################# FRECUENCIA DE BIGRAMAS ##################")
 # v -> valor - c -> clave
 for v,c in lcad: #vector de clases de las palabras
